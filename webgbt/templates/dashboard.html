@@ -1,0 +1,440 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- HEADER -->
+<header class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <div class="flex items-center gap-3">
+            <img src="{% static '/photo/logo.jpg' %}" class="w-10 h-10 rounded-full">
+            <a href="{% url 'home' %}" class="text-white font-bold text-lg">
+    Sistem Informasi Pelayanan Digital GBT Elshaddai Solo
+</a>
+        </div>
+<!-- DROPDOWN MENU -->
+        <nav>
+            <ul class="flex gap-6">
+				<div class="relative group">
+				<button class="text-white font-medium">
+				Menu
+				</button>
+
+					<div class="absolute right-0 mt-2
+                    opacity-0 invisible
+                    group-hover:opacity-100
+                    group-hover:visible
+                    transition-all duration-300
+                    bg-white text-black
+                    rounded-lg shadow-xl
+                    w-48 z-50">
+						<a href="{% url 'jadwal_ibadahlist' %}" class="block px-4 py-2 hover:bg-gray-100">Ibadah</a>
+						<a href="{% url 'jadwal_pelayananlist' %}" class="block px-4 py-2 hover:bg-gray-100">Jadwal Pelayanan</a>
+						<a href="{% url 'renungan_list' %}" class="block px-4 py-2 hover:bg-gray-100">Renungan</a>
+						<a href="{% url 'warta_gerejalist' %}" class="block px-4 py-2 hover:bg-gray-100">Warta Gereja</a>
+						<a href="{% url 'lihatbaptis' %}" class="block px-4 py-2 hover:bg-gray-100">Baptis</a>
+						<a href="{% url 'data_pelayan' %}" class="block px-4 py-2 hover:bg-gray-100">Pelayan Altar</a>
+						<a href="{% url 'simpanan' %}" class="block px-4 py-2 hover:bg-gray-100">Tersimpan</a>
+					</div>
+				</div>
+<!-- dropwon login -->
+			<ul class="flex gap-6 items-center">
+			{% if user.is_authenticated %}
+
+    <li class="text-white">
+        Halo, {{ user.username }}
+    </li>
+
+    <li>
+        <a href="{% url 'logout' %}"
+           class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+           Logout
+        </a>
+    </li>
+{% else %}
+    <li>
+        <a href="{% url 'login' %}"
+           class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+           Login
+        </a>
+    </li>
+	{% endif %}
+
+			</ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="relative h-[400px] overflow-hidden">
+    
+    <!-- Slide Images -->
+    <div class="slides absolute inset-0">
+        <img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/504958373_4016473761944344_4962973815526360362_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=110&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHeJL7VuFLX5F5XlhY99Hh1BF2rq0Ld9RUEXaurQt31FeT3x4WtM0ksNG1zbsthPDPacPS1WYsWGnRGDS8ziSyO&_nc_ohc=pOpwJoWBuvwQ7kNvwFmgECg&_nc_oc=Adq9le2_fOFIk_3r6jBEg68SrbOLOT9U5MKWJsVe81Mnf6naFJDnQhabZ9YW6SuqRZ4&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=6WUfYKdc392mPnjMgXJo9g&_nc_ss=782a8&oh=00_AQC0BuX0KNMQqlX9ncBanadarKcCczeQtb3gmvBAJXsF_A&oe=6A55724A
+             class="slide absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-1000">
+
+        <img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/481696323_553174117777717_5745240316818770136_n.jpg?stp=dst-jpg_tt6&cstp=mx1040x780&ctp=s1040x780&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHz2G5jlKbA6QqX3GEtxpthPlHIgg2kvuk-UciCDaS-6SI4Sr8vSCtH7IQtNVsf8s_W4LfqzSRbQH8obVBC1Utn&_nc_ohc=1zq7RH0Iu88Q7kNvwGX4dM4&_nc_oc=AdroDmNXwmXMm0u9GC5oTszWALdzcC5oaXgxXXUpanfjNGc2ZmOhYXNUEwm8odb_V4g&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=22Z2SoCrEebDTzBirsdXcg&_nc_ss=782a8&oh=00_AQC3v-zU1kfFkkw3jTzUTJf1T_M_xdecD8Kd384muOcoag&oe=6A5569A5
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+
+        <img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/481276701_552626187832510_8693829706745981573_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1538&ctp=s2048x1538&_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeEzDNP_EFCf4DR7fAKMkAruRKNI0F9CMZtEo0jQX0IxmwmfXocTgXWOV65qt8XRAZs_qmLQO_BgkAQhWBMNSwf2&_nc_ohc=sQlewaqPtL4Q7kNvwHM4Q6N&_nc_oc=AdrjIVBIZVFmUp8-3BiptzuaBR4a458TslH1S3Xy7x2DJZko7esOpEF8e4lvwn6BOyE&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=75bcm5Sc7X77ol4ZIvUk_Q&_nc_ss=782a8&oh=00_AQBf_yIdNbyBOQOPdRmclotAWJ5AsoNIY8XZI-JgbvkG9Q&oe=6A557D72
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+			 
+		<img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/481666099_552624287832700_36378455948896302_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1538&ctp=s2048x1538&_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHjnG6cU1HZlVJKK5Dq2tqoret7pC2hjrOt63ukLaGOs2zqyWkACwbO68Iv-BeZ-WO8K8BrsFSIPeMosGWJiHS7&_nc_ohc=J9pDQqLCh7MQ7kNvwFYHtL9&_nc_oc=AdoMOVFFfcUWtIPLFvhTOPVx9by9S-Tr_CmhhiNSZqIQl5Z3BBGsHdU0X6plq64b4os&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=49BAacxy03fe4ciJLxQ-tw&_nc_ss=782a8&oh=00_AQAk2aQV2YB6gSPDGQ7Bo63-dvhcBeSUHpLQn9Ai70WNJA&oe=6A555F5B
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+			 
+		<img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/504068522_4016473548611032_6901258075477391933_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1536&ctp=s2048x1536&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeEvpKvoKt-1TahJinrWgnCoeKx4eKawuHR4rHh4prC4dAhXm-uD55YGWJ15xiksmunRsOn9_cHzu7di0G6868KW&_nc_ohc=AYN4qrOQk4AQ7kNvwFErXoC&_nc_oc=Adq33CQgsD5Sn3NezLFx3inA0ws7AOrOTwDlH8AkEQwmhvj7koLEoqjOfRjctyExtyw&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=UAjrU8fgtGpgBQCcbuZ8OQ&_nc_ss=782a8&oh=00_AQD3rkh77cV4nE7TaxMECcee-MTzF5I4ZBS8_QxLgTNRIA&oe=6A556126
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+			 
+		<img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/481291590_552616787833450_8607192815053723434_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s590x590&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHxlJlZ7dTZVDjZyUKHfj1erplXo199hUmumVejX32FSeD8Wg7_o14ZWioDzRJ-aW6Z5Ba1eofcNsYb5FR5se2Q&_nc_ohc=1Iy4ArbMDPgQ7kNvwEBFuh0&_nc_oc=AdriPrjTsiVYniVKh0OM3_H4_VnUsH8qLC9zpGiKZrr78Bn4J6tN4QgfQMBnOfeBKxA&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=gJqimrhnTw3zeBmr_kLhpQ&_nc_ss=782a8&oh=00_AQAKeqIRVzAD4ybGrp9y0kmSox_HK0dHweFOloyHHjj_Hw&oe=6A556E11
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+			 
+		<img src=https://scontent.fjog9-1.fna.fbcdn.net/v/t39.30808-6/481252352_552616711166791_1695659022092058029_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE-TKlVJyySyZmZt8pXyyJKgmqyQcT0w7eCarJBxPTDtwZSsvXTZWpd7jhKkFAQ2M7AYk4N9-RGUCJSgSOLPt7u&_nc_ohc=HSeu6A0s5v8Q7kNvwH3oO45&_nc_oc=AdqYYN5h3cHD6-AuBxZMd22EX0fJnFFmv8fCmFCp3Quk1MGrF7drdgRfpua1Js4FRcs&_nc_zt=23&_nc_ht=scontent.fjog9-1.fna&_nc_gid=juj2CUKUKLgn6wnZ7uM6gw&_nc_ss=782a8&oh=00_AQCAu5SETauc_2pSDp6TSu958cAnHAy1V5Du_ZUDRTk9rA&oe=6A558F29
+             class="slide absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-1000">
+    </div>
+
+    <!-- Overlay Gelap -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- Text -->
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+        <h1 class="text-5xl font-bold mb-4">
+            Selamat Datang
+        </h1>
+
+        <p class="text-xl">
+            Tempat ibadah, persekutuan, dan pertumbuhan rohani
+        </p>
+    </div>
+</section>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    setInterval(() => {
+
+        slides[currentSlide].classList.remove('opacity-100');
+        slides[currentSlide].classList.add('opacity-0');
+
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        slides[currentSlide].classList.remove('opacity-0');
+        slides[currentSlide].classList.add('opacity-100');
+
+    }, 3000); 
+</script>
+
+<!-- WARTA -->
+<section class="bg-gray-100 py-5">
+    <div class="max-w-8xl mx-auto px-2">
+
+        <!-- Slider Container -->
+        <div class="relative h-[140px] overflow-hidden">
+
+            <!-- Slider -->
+            <div id="wartaSlider"
+                 class="transition-transform duration-700 ease-in-out">
+
+                {% for w in wartagereja|slice:":5" %}
+
+                <!-- ITEM -->
+                <a href="{% url 'wartagereja' w.id %}"
+                   class="block h-[140px] mb-3">
+
+                    <div class="bg-white p-6 rounded-xl shadow
+                                h-[120px] flex flex-col justify-center
+                                hover:shadow-xl hover:-translate-y-1
+                                transition duration-300 cursor-pointer">
+
+                        <h3 class="font-bold text-xl text-slate-800 mb-2">
+                            {{ w.judul }}
+                        </h3>
+
+                        <p class="text-gray-600">
+                            {{ w.deskripsi|truncatewords:12 }}
+                        </p>
+
+                    </div>
+
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById("wartaSlider");
+    const totalSlides = slider.children.length;
+    let currentIndex = 0;
+    const slideHeight = 140;
+		setInterval(() => {
+        currentIndex++;
+        if (currentIndex >= totalSlides) {
+            currentIndex = 0;
+        }
+        slider.style.transform =
+            `translateY(-${currentIndex * slideHeight}px)`;
+    }, 3000);
+
+});
+
+</script>
+<!-- TENTANG -->
+<section id="tentang" class="py-8">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Tentang Gereja</h2>
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Sejarah Gereja</h3>
+                <p class="mb-4">
+                    GBT ElShaddai Solo merupakan suatu gereja yang bernaung pada sinode
+                    Gereja Bethel Tabernakel yang berpusat di Surabaya....
+                </p>
+		<a href="{% url 'sejarah' %}" 
+           class="text-blue-500 mt-2 inline-block">
+           Baca selengkapnya →
+        </a>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334"
+                 class="rounded-xl shadow-lg">
+        </div>
+    </div>
+</section>
+
+<!-- RENUNGAN -->
+<section id="renungan" class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Renungan</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            {% for r in renungan %}
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+			
+ <!-- GAMBAR -->
+    {% if r.gambar %}
+
+        <img src="{{ r.gambar.url }}"
+             class="w-full h-52 object-cover">
+
+    {% else %}
+
+        <!-- Placeholder jika gambar kosong -->
+        <div class="w-full h-52 bg-gray-200 flex items-center justify-center text-gray-500">
+            Gambar Belum Tersedia
+        </div>
+
+    {% endif %}
+                <h3 class="font-bold text-lg mb-2">{{ r.judul }}</h3>
+                <p class="text-sm mb-4">{{ r.isi|truncatewords:10 }}</p>
+                <a href="{% url 'renungan' r.id %}"  class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition"> Baca</a>
+			</div>
+            {% endfor %}
+			
+        </div>
+    </div>
+		<div class="flex justify-center mt-6">
+	 <a href="{% url 'renungan_list' %}"  class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition translate-y-8 translate-x-2 "> Selengkapnya</a>
+	 </div>
+</section>
+
+<!-- JADWAL IBADAH -->
+<section id="ibadah" class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Jadwal Ibadah</h2>
+
+          <div class="grid md:grid-cols-3 gap-6">
+           {% for j in jadwalibadah %}
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+			
+ <!-- GAMBAR -->
+    {% if j.gambar %}
+
+        <img src="{{ j.gambar.url }}"
+             class="w-full h-52 object-cover">
+
+    {% else %}
+
+        <!-- Placeholder jika gambar kosong -->
+        <div class="w-full h-52 bg-gray-200 flex items-center justify-center text-gray-500">
+            Gambar Belum Tersedia
+        </div>
+
+    {% endif %}
+                <h3 class="font-bold text-lg mb-2">{{ j.nama }}</h3>
+				    <p class="font-semibold">{{ j.tanggal }}</p>
+                    <p>{{ j.tempat }}</p>
+					
+                <a href="{% url 'jadwalibadah' j.id %}" class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition translate-y-2"> Selengkapnya
+				</a>
+                </div>
+   {% endfor %}
+        </div>
+    </div>
+		<div class="flex justify-center mt-6">
+	 <a href="{% url 'jadwal_ibadahlist' %}"  class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition translate-y-8 translate-x-2 "> Selengkapnya</a>
+	 </div>
+</section>
+
+<!-- PELAYANAN -->
+<section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Pelayan Altar</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            {% for p in jadwalpelayanan %}
+            <div class="bg-white p-6 rounded-xl shadow">
+                <h3 class="font-bold">{{ p.nama }}</h3>
+                <p>{{ p.tanggal }}</p>
+			  <a href="{% url 'jadwalpelayanan' p.id %}" class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition translate-y-2"> Selengkapnya
+			</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+	<div class="flex justify-center mt-6">
+	 <a href="{% url 'jadwal_pelayananlist' %}"  class="inline-flex items-center gap-5 bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-500 transition translate-y-8 translate-x-2 "> Selengkapnya</a>
+	 </div>
+</section>
+
+<!-- Daftar PELAYANAN -->
+<section class="bg-blue-700 text-white py-20">
+<section id="form-pelayanan" class="py-16">
+
+    <div class="max-w-5xl mx-auto px-6 text-center">
+
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+            Bergabunglah Dalam Tim Pelayanan Altar GBT Elshaddai Solo
+        </h1>
+
+        <p class="text-lg md:text-xl text-blue-100 leading-relaxed mb-8">
+            Tuhan memanggil setiap kita untuk melayani dengan talenta dan hati yang tulus.
+            Melalui pelayanan altar, Anda dapat menjadi berkat bagi jemaat dan turut ambil bagian
+            dalam pekerjaan Tuhan di Gereja.
+        </p>
+
+        <p class="text-md text-blue-200 mb-10">
+            Mari melayani bersama dalam bidang Singer, Music, Multimedia, Usher,
+            Doa, maupun Tamborin.
+        </p>
+
+        <!-- TOMBOL -->
+        <a href="{% url 'pelayan_altar' %}"
+           class="inline-block bg-white text-blue-700 font-bold px-8 py-4 rounded-xl hover:bg-gray-100 transition duration-300 shadow-lg">
+
+            Join Pelayanan Sekarang
+
+        </a>
+
+    </div>
+
+</section>
+<!-- LOKASI -->
+<section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <!-- Judul -->
+        <h2 class="text-3xl font-bold text-left mb-10 text-[#0B2341]">
+            Lokasi Kami
+        </h2>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+
+            <!-- Google Maps -->
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6462.485397554152!2d110.83102710569256!3d-7.551623442526278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a170024137ab9%3A0xfb60cea08180e1f8!2sGereja%20Bethel%20Tabernakel%20EL-Shaddai%20Solo!5e0!3m2!1sid!2sid!4v1775489114941!5m2!1sid!2sid"
+                    width="100%"
+                    height="450"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <!-- Sosial Media -->
+            <div>
+
+                <h3 class="text-3xl font-bold text-[#0B2341] mb-1">
+                    Ikuti Kami di Media Sosial
+                </h3>
+
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Dapatkan informasi terbaru, jadwal ibadah,
+                    dan kegiatan gereja melalui media sosial resmi kami.
+                </p>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/gbtsologbtsolo/"
+                   target="_blank"
+                   class="bg-white rounded-2xl shadow-md p-5 flex items-center justify-between mb-5 hover:shadow-xl transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 flex items-center justify-center text-white text-3xl">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-xl text-gray-800">
+                                Instagram
+                            </h4>
+                            <p class="text-gray-500">
+                                @gbtsologbtsolo
+                            </p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+                <!-- Facebook -->
+                <a href="https://facebook.com/Gbt Solo Gbt Solo"
+                   target="_blank"
+                   class="bg-white rounded-2xl shadow-md p-5 flex items-center justify-between hover:shadow-xl transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center text-white text-3xl">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl text-gray-800">
+                                Facebook
+                            </h4>
+                            <p class="text-gray-500">
+                                Gbt Solo Gbt Solo
+                            </p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Chatbox -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="GkWeCUnxRtC7QCz6whNvf";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+
+<!-- FOOTER -->
+<footer class="bg-blue-900 text-white text-center py-6">
+    <p>© 2026 GBT Elshaddai Solo</p>
+</footer>
+
+</body>
+</html>

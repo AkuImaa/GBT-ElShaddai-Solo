@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perkembangan Baptis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+<header class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+        <div class="flex items-center gap-3">
+            <img src="{% static '/photo/logo.jpg' %}" class="w-10 h-10 rounded-full">
+            <a href="{% url 'home' %}" class="text-white font-bold text-lg">
+    Sistem Informasi Pelayanan Digital GBT Elshaddai Solo
+</a>
+        </div>
+<!-- DROPDOWN MENU -->
+        <nav>
+            <ul class="flex gap-6">
+				<div class="relative group">
+				<button class="text-white font-medium">
+				Menu
+				</button>
+
+					<div class="absolute right-0 mt-2
+                    opacity-0 invisible
+                    group-hover:opacity-100
+                    group-hover:visible
+                    transition-all duration-300
+                    bg-white text-black
+                    rounded-lg shadow-xl
+                    w-48 z-50">
+						<a href="{% url 'jadwal_ibadahlist' %}" class="block px-4 py-2 hover:bg-gray-100">Ibadah</a>
+						<a href="{% url 'jadwal_pelayananlist' %}" class="block px-4 py-2 hover:bg-gray-100">Jadwal Pelayanan</a>
+						<a href="{% url 'renungan_list' %}" class="block px-4 py-2 hover:bg-gray-100">Renungan</a>
+						<a href="{% url 'warta_gerejalist' %}" class="block px-4 py-2 hover:bg-gray-100">Warta Gereja</a>
+						<a href="{% url 'lihatbaptis' %}" class="block px-4 py-2 hover:bg-gray-100">Baptis</a>
+						<a href="{% url 'data_pelayan' %}" class="block px-4 py-2 hover:bg-gray-100">Pelayan Altar</a>
+					</div>
+				</div>
+<!-- dropwon login -->
+			<ul class="flex gap-6 items-center">
+			{% if user.is_authenticated %}
+
+    <li class="text-white">
+        Halo, {{ user.username }}
+    </li>
+
+    <li>
+        <a href="{% url 'logout' %}"
+           class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+           Logout
+        </a>
+    </li>
+{% else %}
+    <li>
+        <a href="{% url 'login' %}"
+           class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+           Login
+        </a>
+    </li>
+	{% endif %}
+
+			</ul>
+        </nav>
+    </div>
+</header>
+<div class="max-w-5xl mx-auto py-10">
+
+    <h1 class="text-3xl font-bold text-center mb-8">
+        Statistik Baptis
+    </h1>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="bg-blue-500 text-white p-6 rounded-xl shadow">
+            <h2>Total Pendaftar</h2>
+            <p class="text-4xl font-bold mt-2">
+                {{ total }}
+            </p>
+        </div>
+
+        <div class="bg-green-500 text-white p-6 rounded-xl shadow">
+            <h2>Belum Pernah Baptis</h2>
+            <p class="text-4xl font-bold mt-2">
+                {{ belum_baptis }}
+            </p>
+        </div>
+
+        <div class="bg-purple-500 text-white p-6 rounded-xl shadow">
+            <h2>Pindahan Gereja</h2>
+            <p class="text-4xl font-bold mt-2">
+                {{ pindahan }}
+            </p>
+        </div>
+
+    </div>
+	<div class="mt-10 bg-white rounded-xl shadow overflow-hidden">
+
+    <div class="bg-blue-900 text-white px-6 py-4">
+        <h2 class="text-xl font-semibold">
+            Daftar Peserta Yang Sudah Mendapat Jadwal Baptis
+        </h2>
+    </div>
+
+    <table class="w-full">
+
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="p-3 text-left">Nama</th>
+                <th class="p-3 text-left">No HP</th>
+                <th class="p-3 text-left">Tanggal Baptis</th>
+                <th class="p-3 text-left">Lokasi Baptis</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for peserta in peserta_jadwal %}
+
+            <tr class="border-t hover:bg-gray-50">
+
+                <td class="p-3">
+                    {{ peserta.nama }}
+                </td>
+
+                <td class="p-3">
+                    {{ peserta.no_hp }}
+                </td>
+
+                <td class="p-3">
+                    {{ peserta.jadwal_baptis }}
+                </td>
+
+                <td class="p-3">
+                    {{ peserta.lokasi_baptis }}
+                </td>
+
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="text-center p-6 text-gray-500">
+                    Belum ada peserta yang mendapatkan jadwal baptis.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+<div class="flex flex-col md:flex-row justify-center gap-4 mt-8">
+
+    <a href="{% url 'baptis' %}"
+       class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl shadow text-center">
+        Daftar Baptis
+    </a>
+
+    <a href="{% url 'home' %}"
+       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow text-center">
+        Kembali
+    </a>
+
+</div>
+
+</div>
+
+</body>
+<!-- FOOTER -->
+<footer class="bg-blue-900 text-white text-center py-6">
+    <p>© 2026 GBT Elshaddai Solo</p>
+</footer>
+</html>
