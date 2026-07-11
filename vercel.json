@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "websitegbt/wsgi.py",
+      "src": "gbt_elshaddai_solo/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "websitegbt/wsgi.py"
+      "dest": "gbt_elshaddai_solo/wsgi.py"
     }
   ]
 }
