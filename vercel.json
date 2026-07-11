@@ -1,14 +1,14 @@
 {
   "builds": [
     {
-      "src": "nama_project_anda/wsgi.py",
+      "src": "websitegbt/wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "nama_project_anda/wsgi.py"
+      "dest": "websitegbt/wsgi.py"
     }
   ]
 }
